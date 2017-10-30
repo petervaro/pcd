@@ -7,4 +7,4 @@ before_script:
 
 run_pylint:
   stage: test
-  script: pylint tests.py
+  script: pytest tests.py
