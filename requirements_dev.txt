@@ -1,1 +1,2 @@
 uncompyle6>=2.13.2
+pytest>=3.2.3
