@@ -3,7 +3,7 @@ image: base/archlinux
 
 before_script:
   - pacman -Syy python2 python2-pip --needed --noconfirm
-  - pip install -r requirements_dev.txt
+  - pip2 install -r requirements_dev.txt
 
 run_pylint:
   stage: test
