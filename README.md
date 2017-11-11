@@ -1,3 +1,5 @@
+[![pipeline status][4]][5]
+
 ![pcd][0]
 
 Python Contract Decorators
@@ -15,22 +17,24 @@ Abstract
 --------
 
 Contract programming can boost performance, increase self-documentation coverage
-and all in all a useful code hardening technique.  The main principle is that
-all components in a program should *agree* on how they are interacting with each
-other, hence the name *contract*.  Therefore instead of having isolated
-components which all have to guarantee their own correctness, with contract
-programming entire blocks of components guarantee their correctness as a unit.
+and all in all is a useful code *hardening* technique.  The main principle is
+that all components in a program should *agree* on how they are interacting with
+each other.  Therefore instead of having isolated components which all have to
+guarantee their own correctness, with contract programming entire blocks of
+components guarantee their correctness as a unit.
 
 Though Python is not supporting contracts natively as a language feature, there
-are several libraries out there trying to add the same functionality to Python,
-but they are either broken, incomplete, heavy or simply just reinventing the
-wheel by introducing foreign syntax to Python.  Fortunately there is almost
-always a light and easy way to do things in Python, and that is exactly what
-`pcd` is offering.
+are several libraries out there trying to add the same functionality to Python.
+Sadly they are either broken, or incomplete, or extremely heavy, or simply just
+reinventing the wheel by introducing foreign syntax to Python.  Fortunately
+there is almost always a light and easy way to do things in Python, and that is
+exactly what `pcd` is offering.
 
 Anyway, enough of the abstract mumbo-jumbo, let's start talking about how it
 works, shall we?  As usual, it is easier to understand what is going on via dead
-simple, dummy examples.  So, let's say we have the following setup:
+simple and dummy examples.
+
+So, let's say we have the following setup:
 
 ```python
 def get_user_input():
@@ -53,9 +57,9 @@ def clean_value(value):
     return value.strip()
 ```
 
-If we want to make this safer, and the components more reusable and available
-for other components the main approach would be hardening each component by
-introducing error handling, like so:
+If we want to make this safer, and the components more reusable for other
+components, the main approach would be hardening each component by introducing
+error handling in each function, like so:
 
 ```python
 def get_user_input():
@@ -99,10 +103,12 @@ harder to understand what the exact problems each of the functions are
 trying to solve.  On the other hand the introduced error handling mechanism
 causes unnecessary overhead (and sometimes even redundant checkings in seemingly
 unrelated places), that is, the checks are running regardless of the correctness
-of the input data.  This is where contract programming comes in!  If we can make
-sure, that the top-level component which is using the other two components can
-guarentee the correctness of the inputs, it is completely unnecessary to
-introduce the above shown error handling:
+of the input data which may already have been checked.
+
+This is where contract programming comes in!  If we can make sure, that the
+top-level component which is using the other two components can guarentee the
+correctness of the inputs, it is completely unnecessary to introduce the above
+shown error handling:
 
 ```python
 from pcd import contract
@@ -132,11 +138,13 @@ def clean_value(value):
     return value.strip()
 ```
 
-The result is much cleaner, easier to read and understand, and best of all
-things, at the same time it is also conditionally there and can be removed
-without touching the code again.  So, after heavily testing the program with the
+The result is much cleaner, easier to read and understand, and best of all at
+the same time it is also conditionally there, and can be removed without
+touching the code again.  So, after heavily testing the program with the
 contracts enabled, the application can be optimised greatly by stripping the
-decorators out.
+decorators out.  During the development phase, if another component wants to use
+an already *contracted* one then that component has to respect its contracts,
+which is exactly what the decorator ensures.
 
 > **Note:** `pcd` currently only supports pre- and postconditions, but later on
 > it will introduce *invariants* as well.
@@ -183,12 +191,12 @@ Each *callable* takes no argument, and can use the same argument names that are
 defined by the decorated function.  Every *callable* see all arguments.
 
 The `post` should contain all the *postconditions* of the decorated function.
-Each *callable* takes one argument which can be freely named.  This argument
+Each *callable* takes one argument which can be named freely.  This argument
 will contain the value returned by the decorated function.  Every *callable*
 see all of the arguments of the decorated functions as well.
 
 The `mut` should contain all the *postconditions* of the *mutable* arguments.
-This is very useful in case the decorated function has side effects via its
+This can be very useful in case the decorated function has side effects via its
 arguments.  Each *callable* takes no argument, and can use the same argument
 names that are defined by the decorated function.  The checks are called after
 the function returned.  Every *callable* see all arguments.
@@ -215,9 +223,9 @@ of bytecode instructions and their execution times are the same as well.
 
 Running these functions with simple `assert`s instead while `__debug__` is
 `True` is course faster than any other execution due to the argument handling
-and injection that is done by the `contract`.  However doing so make it hard in
-most cases to check the return value and/or side effects of the decorated
-function.
+and injection that is done by the `contract` decorator.  However doing so makes
+it hard in most cases to check the return value and/or side effects of the
+decorated function, and `contract` is a convenient way of doing that.
 
 
 Testing
@@ -234,7 +242,7 @@ from pytest import raises
 @contract(pre=lambda: len(name) > 0)
 def store_name(name):
     #
-    # Normalise value, and store value ...
+    # Normalise and store value ...
     #
 
     # Return the length of the actual value being stored
@@ -254,7 +262,7 @@ def test_store_name():
 License
 -------
 
-Copyright &copy; 2017 Peter Varo hello@petervaro.com
+Copyright &copy; 2017 [Peter Varo][3]
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by
@@ -272,3 +280,6 @@ along with this program.  If not, see http://www.gnu.org/licenses
 [0]: img/logo.png?raw=true "pcd"
 [1]: https://en.wikipedia.org/wiki/Design_by_contract
 [2]: https://gitlab.com/petervaro/pcd
+[3]: wwww.petervaro.com
+[4]: https://gitlab.com/petervaro/pcd/badges/master/pipeline.svg
+[5]: https://gitlab.com/petervaro/pcd/commits/master
