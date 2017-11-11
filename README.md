@@ -212,6 +212,13 @@ remove the checks, run the program with optimisations:
 $ python -O sample.py
 ```
 
+- - -
+
+> **WARNING!** One should never change the arguments or the return value of the
+> decorated function inside the conditions of the `contract`, as those may be
+> mutable values, therefore removing the contracts will alter the behaviour of
+> the function and may lead to unexpected behaviour!
+
 
 Performance
 -----------
