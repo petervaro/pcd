@@ -284,9 +284,20 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with this program.  If not, see http://www.gnu.org/licenses
 
+- - -
+
+Copyright &copy; 2017 [Peter Varo][3]
+
+The logo is licensed under a [Creative Commons Attribution-ShareAlike 4.0
+International License][6].
+
+[![license][7]][6]
+
 [0]: img/logo.png?raw=true "pcd"
 [1]: https://en.wikipedia.org/wiki/Design_by_contract
 [2]: https://gitlab.com/petervaro/pcd
 [3]: wwww.petervaro.com
 [4]: https://gitlab.com/petervaro/pcd/badges/master/pipeline.svg
 [5]: https://gitlab.com/petervaro/pcd/commits/master
+[6]: https://creativecommons.org/licenses/by-sa/4.0
+[7]: https://i.creativecommons.org/l/by-sa/4.0/80x15.png
