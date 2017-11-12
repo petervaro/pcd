@@ -30,7 +30,7 @@ reinventing the wheel by introducing foreign syntax to Python.  Fortunately
 there is almost always a light and easy way to do things in Python, and that is
 exactly what `pcd` is offering.
 
-Anyway, enough of the abstract mumbo-jumbo, let's start talking about how it
+Anyway, enough of the abstract *mumbo-jumbo*, let's start talking about how it
 works, shall we?  As usual, it is easier to understand what is going on via dead
 simple and dummy examples.
 

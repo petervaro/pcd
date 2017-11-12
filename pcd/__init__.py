@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 if __debug__:
     from inspect     import getargspec
     from collections import OrderedDict
-    # TODO: Consider switching to Decompyle++ https://github.com/zrax/pycdc to
+    # TODO: Consider switching to Decompyle++ https://github.com/zrax/pycdc for
     #       more reliable Python3 support
     from uncompyle6  import PYTHON_VERSION, deparse_code
     try:
@@ -35,8 +35,9 @@ if __debug__:
     # HACK: There is no reliable way to differentiate between a function and a
     #       lambda expression, hence this hack which gets the name
     #       representation of the object.  It is a hack, because the __name__
-    #       attribute can be overridden, which case is also handled, in that
-    #       scenario, the name will be displayed instead of the uncompiled
+    #       attribute can be overridden, however that case is also handled since
+    #       in that scenario, the condition will be treated as a regular
+    #       function, and the name will be displayed instead of the uncompiled
     #       content of the lambda expression
     _LAMBDA_NAME = (lambda: None).__name__
 
@@ -183,3 +184,6 @@ else:
         def decorator(function):
             return function
         return decorator
+
+
+__all__ = ('contract',)

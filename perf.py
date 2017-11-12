@@ -3,7 +3,7 @@ from timeit     import timeit
 from dis        import disassemble
 
 setup="""
-from contract import contract
+from pcd import contract
 
 def without_contract(alpha, beta):
     return cmp(alpha, beta)
