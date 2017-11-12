@@ -296,7 +296,7 @@ International License][6].
 [0]: img/logo.png?raw=true "pcd"
 [1]: https://en.wikipedia.org/wiki/Design_by_contract
 [2]: https://gitlab.com/petervaro/pcd
-[3]: wwww.petervaro.com
+[3]: http://www.petervaro.com
 [4]: https://gitlab.com/petervaro/pcd/badges/master/pipeline.svg
 [5]: https://gitlab.com/petervaro/pcd/commits/master
 [6]: https://creativecommons.org/licenses/by-sa/4.0
