@@ -1,8 +1,8 @@
 from distutils.core import setup
 
-VERSION = '0.2.1'
+VERSION = '0.2.2'
 
-with open('README.md') as readme:
+with open('README.rst') as readme:
     setup(name             = 'pcd',
           packages         = ['pcd'],
           version          = VERSION,

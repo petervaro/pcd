@@ -1,4 +1,4 @@
 include LICENSE
 include COPYING.LESSER
-include README.md
+include README.rst
 include img/logo.png

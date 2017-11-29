@@ -1,0 +1,3 @@
+$ python setup.py sdist
+$ gpg --detach-sign -a dist/pcd-<version>.tar.gz
+$ twine upload dist/pcd-<version>.tar.gz dist/pcd-<version>.tar.gz.asc
