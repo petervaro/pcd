@@ -110,6 +110,36 @@ def test_simple_method():
 
 
 #------------------------------------------------------------------------------#
+def test_simple_property():
+    class Class(object):
+
+        __metaclass__ = Invariant
+        __conditions  = (lambda: self._protected == 'this',)
+
+        _protected = 'this'
+
+        @property
+        def violate(self):
+            self._protected = 'that'
+
+        @violate.setter
+        def violate(self, other):
+            self._protected = other
+
+        @violate.deleter
+        def violate(self):
+            self._protected = 'that'
+
+    raised_with_message(lambda: Class().violate, "self._protected == 'this'")
+    def case_1():
+        Class().violate = 'that'
+    raised_with_message(case_1, "self._protected == 'this'")
+    def case_2():
+        del Class().violate
+    raised_with_message(case_2, "self._protected == 'this'")
+
+
+#------------------------------------------------------------------------------#
 def test_simple_inheritance():
     class Super(object):
 

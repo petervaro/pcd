@@ -121,17 +121,17 @@ class Invariant(type):
                             attribute.fget,
                             '{}.{}: getter'.format(class_name, name),
                             pre=conditions,
-                            post=conditions),
+                            mut=conditions),
                         fset=_add_conditions(
                             attribute.fset,
                             '{}.{}: setter'.format(class_name, name),
                             pre=conditions,
-                            post=conditions),
+                            mut=conditions),
                         fdel=_add_conditions(
                             attribute.fdel,
                             '{}.{}: deleter'.format(class_name, name),
                             pre=conditions,
-                            post=conditions))
+                            mut=conditions))
 
         # Return new class
         return super(Invariant, self).__new__(
