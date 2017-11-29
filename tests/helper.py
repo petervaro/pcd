@@ -18,20 +18,13 @@ You should have received a copy of the GNU Lesser General Public License along
 with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-__all__ = 'contract', 'Invariant'
+from pytest import raises
+
+__all__ = 'raised_with_message',
 
 
 #------------------------------------------------------------------------------#
-if __debug__:
-    from pcd._invariant import Invariant
-    from pcd._contract  import contract
-else:
-    class Invariant(type):
-        def __new__(self, class_name, base_classes, attributes, *a, **k):
-            attributes.pop('_{}__invariant'.format(class_name), None)
-            return super(Invariant, self).__new__(
-                self, class_name, base_classes, attributes)
-    def contract(*args, **kwargs):
-        def decorator(function):
-            return function
-        return decorator
+def raised_with_message(function, message):
+    with raises(AssertionError) as exception_info:
+        function()
+    assert str(exception_info.value.message).endswith(message)
