@@ -123,12 +123,12 @@ class Invariant(type):
                             pre=conditions,
                             post=conditions),
                         fset=_add_conditions(
-                            attribute.fget,
+                            attribute.fset,
                             '{}.{}: setter'.format(class_name, name),
                             pre=conditions,
                             post=conditions),
                         fdel=_add_conditions(
-                            attribute.fget,
+                            attribute.fdel,
                             '{}.{}: deleter'.format(class_name, name),
                             pre=conditions,
                             post=conditions))
